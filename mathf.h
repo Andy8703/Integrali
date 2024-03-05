@@ -1,19 +1,23 @@
-/** \file mathf.h
-	\brief Numeric integration of a polynomial
-	\author Andrea Rivano
+/*! @file mathf.h
+	@brief Library of functions for computing integrals 
+	@author Paolo Gastaldo
 
-	first version of this software; all the functions are in this file
-*/
+	Details.
+*/ 
 
-#ifndef _MATHF_
-#define _MATHF_
+
+#ifndef MATHF_H 
+#define MATHF_H
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 #include <string.h>
+#include "structs.h"
 
-float Polynomial(float* coeff, int size, float in);
-void Rectangular(float* values, int size, float stepsize, float* integ1, float* integ2);
-float Trapezoidal(float* values, int size, float stepsize);
+float Polynomial(poly_s polyf, float in); 
+void Rectangular(float* values, int size, float stepsize, float* integ1, float* integ2); 
+float Trapezoidal(float* values, int size, float stepsize); 
 
-#endif 
+ 
+
+#endif
