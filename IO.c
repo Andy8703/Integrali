@@ -7,6 +7,7 @@
 
 
 #include "io.h"
+#define STRL 150
 
 /*! @brief Opens a file in read-text mode
 	@param filePath the path to the file
@@ -31,8 +32,8 @@ FILE* OpenFile(char* filePath) {
 	@return 1 means that everyting is ok, -1 means that something went wrong 
 */
 int CloseFile(FILE* fPtr) {
-		
-	if (fPtr != NULL)	
+
+	if (fPtr != NULL) {	
       if (fclose(fPtr) != 0) {
 		  printf("\n CloseFile - ");
           printf("Error closing file \n");
@@ -40,9 +41,11 @@ int CloseFile(FILE* fPtr) {
 	  }
 	else
 		return 1;
+	}
 
+	printf("\n CloseFile - ");
+    printf("Error closing file \n");
 	return -1;
-		
 }
 
 /*! @brief reads info from a configuration file: cofficients of the polygon, range, number of intervals
@@ -53,9 +56,9 @@ int CloseFile(FILE* fPtr) {
 	@param xinf pointer to the variable for the number of intervals
 	@return 1 means that everyting is ok, -1 means that something went wrong 
 */
-int ReadConfigFile(FILE* fPtr, poly_s* pf, float* xinf, float* xsup, int* intervals) {
+int ReadConfigFile(FILE* fPtr, poly_s* pf, double* xinf, double* xsup, int* intervals) {
 	
-	char str[100]; 
+	char str[STRL]; 
 	int rv;
 	
 	if (fPtr == NULL) {
@@ -63,9 +66,15 @@ int ReadConfigFile(FILE* fPtr, poly_s* pf, float* xinf, float* xsup, int* interv
         printf("NULL File Pointer \n");
         return -1;
 	}
+
+	if (pf == NULL) {
+		printf("\n ReadConfigFile - ");
+		printf("NULL Pointer \n");
+		return -1;
+	}
 	
 	/*first line of the file: coefficients of the polynom*/
-	if (fgets(str,150,fPtr) != NULL) {
+	if (fgets(str,STRL,fPtr) != NULL) {
 		str[strcspn(str, "\n")] = 0; /* removing end of line */
 		rv= ParseLine(pf,str); 
 		if (rv == -1) {
@@ -81,9 +90,9 @@ int ReadConfigFile(FILE* fPtr, poly_s* pf, float* xinf, float* xsup, int* interv
 	}
 	
 	/*second line of the file: interval of integration*/
-	if (fgets(str,150,fPtr) != NULL) {
+	if (fgets(str,STRL,fPtr) != NULL) {
 		str[strcspn(str, "\n")] = 0; /* removing end of line */
-		sscanf(str,"%f %f",xinf,xsup);
+		sscanf(str,"%lf %lf",xinf,xsup);
 	}
 	else {
 		printf("\n ReadConfigFile - ");
@@ -92,7 +101,7 @@ int ReadConfigFile(FILE* fPtr, poly_s* pf, float* xinf, float* xsup, int* interv
 	}
 	
 	/*third line of the file: number of subintervals*/
-	if (fgets(str,150,fPtr) != NULL) {
+	if (fgets(str,STRL,fPtr) != NULL) {
 		str[strcspn(str, "\n")] = 0; /* removing end of line */
 		sscanf(str,"%d",intervals);
 	}
@@ -114,8 +123,8 @@ int ReadConfigFile(FILE* fPtr, poly_s* pf, float* xinf, float* xsup, int* interv
 int ParseLine(poly_s* pf, char* str) {
 	
 	int ctr = 0;
-	float* values = NULL; 
-	char copy[150];
+	double* values = NULL; 
+	char copy[STRL];
 	
 	if (str == NULL) {
 		printf("\n ParseLine - ");
@@ -132,7 +141,7 @@ int ParseLine(poly_s* pf, char* str) {
 	}
 	
 	/* allocating an array to store the coefficients */
-	values = (float*)malloc(sizeof(float)*ctr);
+	values = (double*)malloc(sizeof(double)*ctr);
 	if (values == NULL) {
 		printf("\n ParseLine - ");
 		printf("\n cannot allocate memory\n");
@@ -152,7 +161,6 @@ int ParseLine(poly_s* pf, char* str) {
 	/* updating pf */
 	pf->coeffs = values; 
 	pf->degree = ctr;
-		
 	
 	return 1;
 }

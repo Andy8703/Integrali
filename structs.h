@@ -14,7 +14,7 @@
 	coeffs[0] + coeffs[1]*x + coeffs[2]*x^2 + ......	
 */
 typedef struct Poly {
-	float* coeffs; 	/* the coefficients, starting from the bias value  */
+	double* coeffs; 	/* the coefficients, starting from the bias value  */
 	int degree; 	/* the number of elements in the array */
 } poly_s;
 

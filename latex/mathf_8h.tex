@@ -1,0 +1,97 @@
+\doxysection{mathf.\+h File Reference}
+\hypertarget{mathf_8h}{}\label{mathf_8h}\index{mathf.h@{mathf.h}}
+
+
+Numeric integration of a polynomial.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{mathf_8h_a62202afd5a9e68d50f14f0e7e9397a89}{Polynomial}} (float \texorpdfstring{$\ast$}{*}coeff, int size, float in)
+\begin{DoxyCompactList}\small\item\em computes the output value of a polynomial \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mathf_8h_ab1b53d01513fc88ccc718ea4721cdd15}{Rectangular}} (float \texorpdfstring{$\ast$}{*}values, int size, float stepsize, float \texorpdfstring{$\ast$}{*}integ1, float \texorpdfstring{$\ast$}{*}integ2)
+\begin{DoxyCompactList}\small\item\em numerical integration according to the rectangular rule \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{mathf_8h_aec000ccaf95fc8c4abdb705baaaf801e}{Trapezoidal}} (float \texorpdfstring{$\ast$}{*}values, int size, float stepsize)
+\begin{DoxyCompactList}\small\item\em numerical integration according to the trapezoidal rule \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Numeric integration of a polynomial. 
+
+\begin{DoxyAuthor}{Author}
+Andrea Rivano
+\end{DoxyAuthor}
+first version of this software; all the functions are in this file 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mathf_8h_a62202afd5a9e68d50f14f0e7e9397a89}\label{mathf_8h_a62202afd5a9e68d50f14f0e7e9397a89} 
+\index{mathf.h@{mathf.h}!Polynomial@{Polynomial}}
+\index{Polynomial@{Polynomial}!mathf.h@{mathf.h}}
+\doxysubsubsection{\texorpdfstring{Polynomial()}{Polynomial()}}
+{\footnotesize\ttfamily float Polynomial (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{coeff,  }\item[{int}]{size,  }\item[{float}]{in }\end{DoxyParamCaption})}
+
+
+
+computes the output value of a polynomial 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coeff} & coefficients of the polynomial (pointer to) \\
+\hline
+{\em size} & length of the coeff array \\
+\hline
+{\em in} & the input value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output value
+\end{DoxyReturn}
+the polynomial is structured as follows\+: coeff\mbox{[}0\mbox{]} + coeff\mbox{[}1\mbox{]}\texorpdfstring{$\ast$}{*}x + .... \Hypertarget{mathf_8h_ab1b53d01513fc88ccc718ea4721cdd15}\label{mathf_8h_ab1b53d01513fc88ccc718ea4721cdd15} 
+\index{mathf.h@{mathf.h}!Rectangular@{Rectangular}}
+\index{Rectangular@{Rectangular}!mathf.h@{mathf.h}}
+\doxysubsubsection{\texorpdfstring{Rectangular()}{Rectangular()}}
+{\footnotesize\ttfamily void Rectangular (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{values,  }\item[{int}]{size,  }\item[{float}]{stepsize,  }\item[{float \texorpdfstring{$\ast$}{*}}]{integ1,  }\item[{float \texorpdfstring{$\ast$}{*}}]{integ2 }\end{DoxyParamCaption})}
+
+
+
+numerical integration according to the rectangular rule 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & points that set the equally spaced intervals (pointer to) \\
+\hline
+{\em size} & length of the values array \\
+\hline
+{\em stepsize} & the interval between two points \\
+\hline
+{\em integ1} & integral computed using as reference the first point of each interval \\
+\hline
+{\em integ2} & integral computed using as reference the second point of each interval \\
+\hline
+\end{DoxyParams}
+\Hypertarget{mathf_8h_aec000ccaf95fc8c4abdb705baaaf801e}\label{mathf_8h_aec000ccaf95fc8c4abdb705baaaf801e} 
+\index{mathf.h@{mathf.h}!Trapezoidal@{Trapezoidal}}
+\index{Trapezoidal@{Trapezoidal}!mathf.h@{mathf.h}}
+\doxysubsubsection{\texorpdfstring{Trapezoidal()}{Trapezoidal()}}
+{\footnotesize\ttfamily float Trapezoidal (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{values,  }\item[{int}]{size,  }\item[{float}]{stepsize }\end{DoxyParamCaption})}
+
+
+
+numerical integration according to the trapezoidal rule 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & points that set the equally spaced intervals (pointer to) \\
+\hline
+{\em size} & length of the values array \\
+\hline
+{\em stepsize} & the interval between two points \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the computed integral 
+\end{DoxyReturn}

@@ -35,22 +35,22 @@
 int main() {
 
 	FILE* fPtr = OpenFile("configFile.txt");
-	float xmin = 0;
-	float xmax = 0;
+	double xmin = 0;
+	double xmax = 0;
 	int intervals = 0;
 	poly_s polinomio;
 
 	int check = ReadConfigFile(fPtr, &polinomio, &xmin, &xmax, &intervals);
 
-	float integ1, integ2;
+	double integ1, integ2;
 	
 	int i; 
-	float in = xmin;
-	float gap = (xmax-xmin)/(float)intervals;
-	float* fvalues = NULL;
+	double in = xmin;
+	double gap = (xmax-xmin)/(double)intervals;
+	double* fvalues = NULL;
 	
 	/* this array will store the (steps+1) values of the polynomial that are delimiting the equally spaced intervals*/
-	fvalues = (float*)malloc(sizeof(float)*(intervals+1));
+	fvalues = (double*)malloc(sizeof(double)*(intervals+1));
 	if (fvalues == NULL) {
 		printf("\nERROR: cannot allocate memory\n");
 		exit(-1);

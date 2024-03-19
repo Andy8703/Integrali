@@ -13,11 +13,11 @@
 	\param in the input value 
 	\return the output value
 */
-float Polynomial(poly_s polyf, float in) {
+double Polynomial(poly_s polyf, double in) {
 	
 	int i;
-	float out = 0.;
-	float x = in;	
+	double out = 0.;
+	double x = in;	
 	
 	out = polyf.coeffs[0];
 	for (i=1; i<polyf.degree; i++) {
@@ -37,7 +37,7 @@ float Polynomial(poly_s polyf, float in) {
 	\param integ1 integral computed using as reference the first point of each interval 
 	\param integ2 integral computed using as reference the second point of each interval	
 */
-void Rectangular(float* values, int size, float stepsize, float* integ1, float* integ2) {
+void Rectangular(double* values, int size, double stepsize, double* integ1, double* integ2) {
 	
 	int i;
 
@@ -61,12 +61,12 @@ void Rectangular(float* values, int size, float stepsize, float* integ1, float* 
 	\param stepsize the interval between two points 
 	\return the integral computed  
 */
-float Trapezoidal(float* values, int size, float stepsize) {
+double Trapezoidal(double* values, int size, double stepsize) {
 	
 	int i;
 
-	float integ = 0.;
-	float h = stepsize/2.;
+	double integ = 0.;
+	double h = stepsize/2.;
 	
 	for (i=0; i<(size-1); i++) 
 		integ += h*(values[i+1]+values[i]);
